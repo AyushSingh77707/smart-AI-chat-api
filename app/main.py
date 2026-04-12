@@ -1,17 +1,19 @@
 from fastapi import FastAPI
 from groq import Groq
 from app.core.config import settings
-from app.routers import auth,session
+from app.routers import auth,session,chat
 from app.database import Base,engine
 from app.models.user import User
 from app.models.session import Session
 from app.models.message import Message
+
 
 Base.metadata.create_all(bind=engine)
 
 app = FastAPI(title="SmartChat API")
 app.include_router(auth.router)
 app.include_router(session.router)
+app.include_router(chat.router)
 
 client = Groq(api_key=settings.GROQ_API_KEY)
 
