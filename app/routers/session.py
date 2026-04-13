@@ -9,9 +9,10 @@ from typing import List
 router=APIRouter(prefix="/session",tags=["Sessions"])
 
 @router.post("/create",response_model=SessionResponse)
-def sess_create(info:SessionCreate,db:Session=Depends(get_db),current_user=Depends(get_current_user)):
+def sess_create(db:Session=Depends(get_db),current_user=Depends(get_current_user)):
     new_session=Session(user_id=current_user.id,
-                        title=info.title)
+                        # title=info.title,
+                        title="New Chat")
     db.add(new_session)
     db.commit()
     db.refresh(new_session)

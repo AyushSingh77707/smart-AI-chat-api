@@ -3,7 +3,8 @@ from typing import List
 from datetime import datetime
 
 class SessionCreate(BaseModel):
-    title:str="New Chat"
+    # title:str="New Chat"
+    pass
 
 class SessionResponse(BaseModel):
     id:int
